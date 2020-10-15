@@ -11,11 +11,13 @@ public class SecretWord {
 	public SecretWord() {
 		word_length = 5;
 		min_number = 1;
+		secretWord = new int[word_length];
 	}
 	
 	public SecretWord(int length, int min) {
 		word_length = length;
 		min_number = min;
+		secretWord = new int[word_length];
 	}
 
 	public int getWord_length() {
@@ -42,48 +44,35 @@ public class SecretWord {
 		this.secretWord = secretWord;
 	}
 	
-	//TODO: Finish the generateSecretWord function
-	private int[] generateSecretWord(int length, int minValue) {
-		Random r = new Random();
-		int code[] = new int[length];
-		int numbers[] = new int[length];
-		for (int i = 0; i < length; i++) {
-			numbers[i] = minValue + i;
-		}
-		for (int i = 0; i < length; i++) {
-			int value = r.nextInt(length-1);
-			while(numbers[value] != -1) {
-				if (numbers[value]!=-1) {
-					code[i]=numbers[value];
-					numbers[value]=-1;
-				}else {
-					value = r.nextInt(length-1);
-				}
-			}
-		}	
-		/*
-		int low = minValue;
-		int high = (low + length)-1;
-		boolean hasDuplicated = true;
-		//System.out.println("Antes del while");
 
-		while(hasDuplicated) {
-			for(int i = 0; i < length; i++){
-		        code[i] = r.nextInt(high-low) + low;
-		        //System.out.println("Estoy en el for");
-		    }
-			System.out.println("_");
-			for(int i = 0; i < length; i++){
-		        System.out.println(code[i]);
-		    }
-			System.out.println("_");
-			
-			hasDuplicated = hasDuplicated(code);
-			//System.out.println("Estoy en el while");
+	public void generateSecretWord(int length, int minValue) {
+		Random r = new Random();
+		
+		int counter = 0;
+		int value;
+		
+		int numbers[] = new int[length];
+		
+		for(int i = minValue; i<(minValue+length); i++) {
+			System.out.println("Estoy en el primer bucle");
+			numbers[counter] = i;
+			counter++;
 		}
 		
-		//System.out.println("Despues del while");*/
-		return code;
+		for(int i = 0; i<length; i++) {
+			System.out.println("He entrado en el bucle aleatorio");
+			value = r.nextInt(length -1);
+			while(numbers[value] == -1) {
+				System.out.println(value);
+				value = r.nextInt(length);
+			}
+			this.secretWord[i] = numbers[value];
+			numbers[value] = -1;
+		}
+		
+		for(int i = 0; i< length; i++) {
+			System.out.println(this.secretWord[i]);
+		}
 	}
 	
 	private boolean hasDuplicated(int[] secret) {
@@ -92,6 +81,7 @@ public class SecretWord {
 		for(i = 0; i<5; i++) {
 			for(j= 0; j<5; j++) {
 				if((i != j) && (secret[i]==secret[j])) {
+					System.out.println("Duplicated values!");
 					duplicated = true;
 				}
 			}
@@ -105,11 +95,4 @@ public class SecretWord {
 	{
 		return hasDuplicated(secretWord);
 	}
-	
-	public int[] proxyGenerateSecretWord(int length, int minValue) 
-	{
-		return generateSecretWord(length, minValue);
-	}
-	
-	
 }

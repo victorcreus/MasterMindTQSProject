@@ -44,18 +44,22 @@ public class SecretWordTest {
 	public void testHasDuplicated() {
 		int testWordNoDuplicated[] = new int [] {1,2,3,4,5};
 		int testWordDuplicated[] = new int [] {1,2,3,1,5};
+		int testWordDuplicatedAll[] = new int [] {1,1,1,1,1,1,1,1,1,1,1,5};
 		//System.out.println(sw.proxyHasDuplicated(testWordNoDuplicated));
 		assertFalse(sw.proxyHasDuplicated(testWordNoDuplicated));
 		//System.out.println(sw.proxyHasDuplicated(testWordDuplicated));
 		assertTrue(sw.proxyHasDuplicated(testWordDuplicated));
+		assertTrue(sw.proxyHasDuplicated(testWordDuplicatedAll));
 	}
 	
-	//@Test
+	@Test
 	public void testGenerateCodeLength() {
 		int testLengthDefault = 5;
 		int testLengthCustomized = 4;
-		int codeDefault[] = sw.proxyGenerateSecretWord(testLengthDefault, 1);
-		int codeCustomized[] = swp.proxyGenerateSecretWord(testLengthCustomized, 5);
+		sw.generateSecretWord(testLengthDefault, 1);
+		int codeDefault[] = sw.getSecretWord();
+		swp.generateSecretWord(testLengthCustomized, 5);
+		int codeCustomized[] = swp.getSecretWord();
 		assertEquals(testLengthDefault,codeDefault.length);
 		assertEquals(testLengthCustomized,codeCustomized.length);
 	}
@@ -64,12 +68,14 @@ public class SecretWordTest {
 	public void testGenerateCodeMinusValue(){
 		int testMinusValueDefault = 1;
 		int testMinusValueCustomized = 5;
-		int codeDefault[] = sw.proxyGenerateSecretWord(5, testMinusValueDefault);
-		//int codeCustomized[] = swp.proxyGenerateSecretWord(4, testMinusValueCustomized);
+		sw.generateSecretWord(5, testMinusValueDefault);
+		int codeDefault[] = sw.getSecretWord();
+		swp.generateSecretWord(4, testMinusValueCustomized);
+		int codeCustomized[] = swp.getSecretWord();
 		Arrays.sort(codeDefault);
-		//Arrays.sort(codeCustomized);
+		Arrays.sort(codeCustomized);
 		assertEquals(testMinusValueDefault,codeDefault[0]);
-		//assertEquals(testMinusValueCustomized,codeCustomized[0]);
+		assertEquals(testMinusValueCustomized,codeCustomized[0]);
 	}
 	
 
