@@ -2,7 +2,7 @@ package MasterMindTQSProject;
 
 import java.util.Random;
 
-public class SecretWord {
+public class SecretWord{
 	
 	private int word_length;
 	private int min_number;
@@ -44,10 +44,9 @@ public class SecretWord {
 		this.secretWord = secretWord;
 	}
 	
-
-	public void generateSecretWord(int length, int minValue) {
+	//This function generate a code without duplicated numbers
+	/*public void generateSecretWord(int length, int minValue) {
 		Random r = new Random();
-		
 		int counter = 0;
 		int value;
 		
@@ -73,6 +72,19 @@ public class SecretWord {
 		for(int i = 0; i< length; i++) {
 			System.out.println(this.secretWord[i]);
 		}
+	}*/
+	
+	public void generateSecretWord(int length, int minValue) {
+		Random r = new Random();
+		int low, high;
+		low = minValue;
+		high = (length-1) + minValue;
+		for (int i = 0; i < length; i++) {
+			this.secretWord[i] = r.nextInt(high-low)+low;
+		}
+		for(int i = 0; i< length; i++) {
+			System.out.println(this.secretWord[i]);
+		}
 	}
 	
 	private boolean hasDuplicated(int[] secret) {
@@ -87,9 +99,26 @@ public class SecretWord {
 			}
 		}
 		
-		
 		return duplicated;
 	}
+	
+	public boolean itIsInRange() {
+		boolean inRange = true;
+		int i = 0;
+		int min = this.min_number;
+		int max = (this.word_length-1)+min;
+		while(inRange && i < this.word_length) {
+			if (this.secretWord[i] < min || this.secretWord[i] > max) {
+				inRange = false;
+			}
+			else {
+				i++;
+			}
+		}
+		
+		return inRange;
+	}
+	
 	
 	public boolean proxyHasDuplicated(int[] secretWord) 
 	{
