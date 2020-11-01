@@ -10,6 +10,7 @@ public class Game {
 	
 	Game(){
 		tries = 10;
+		secretWord = new SecretWord();
 	}
 	
 	private void askTries() {
@@ -102,4 +103,36 @@ public class Game {
 		return codeTry;
 	}
 	
+	public int getNumbersCorrectPosition() {
+		int correctPosition = 0;
+		
+		for(int i = 0; i < this.secretWord.getWord_length(); i++) {
+			if(this.codeTry[i] == this.secretWord.getSecretWord()[i]) {
+				correctPosition++;
+			}
+		}
+		return correctPosition;
+	}
+	
+	public int getAproxNumbers() {
+		int aproxNumbers = 0;
+		int correctPosition = getNumbersCorrectPosition();
+		boolean aprox;
+		
+		for(int i = 0; i < this.secretWord.getWord_length();i++) {
+			aprox = false;
+			for (int j = 0; j < this.codeTry.length;j++) {
+				if (this.codeTry[j] == this.secretWord.getSecretWord()[i]) {
+					aprox = true;
+				}
+			}
+			if (aprox) {
+				aproxNumbers++;
+			}
+		}
+		
+		
+		return aproxNumbers - correctPosition;
+		
+	}
 }

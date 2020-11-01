@@ -5,6 +5,7 @@ public class MasterMind {
 	private int n_tries;
 	private int n_word_length;
 	
+	
 	//Pedir al usuario numero de intentos
 	//Pedir al usuario por defecto o personalizado
 	//En caso por personalizado: Pedir minValue y long

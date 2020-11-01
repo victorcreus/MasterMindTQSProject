@@ -7,7 +7,7 @@ import org.junit.Test;
 public class GameTest {
 	
 	Game game = new Game();
-	
+		
 	//@Test
 	public void testAskNumTriesDefault() {
 		int testTries = 10;
@@ -43,14 +43,15 @@ public class GameTest {
 		assertEquals(testTries, game.getTries());
 	}
 	
-	@Test
+	//@Test
 	/*Falta crear MockObject para la lectura del askCode, sino el usuario
 	debe ingresar los datos manualmente. Después se debe comprobar si es
 	válido o se debe pedir de nuevo.
 	Preguntas tutoria:
 	Mock Objects
 	FeedBack general
-	¿Se puede involucrar al usuario en los test? (Scanner de datos)*/
+	¿Se puede involucrar al usuario en los test? (Scanner de datos)
+	¿Cómo hacemos assertEquals para arrays de datos?*/
 	
 	public void testInsertCode() {
 		int []testCode = {1,2,3,4,5};
@@ -58,13 +59,44 @@ public class GameTest {
 		int []testCodeError2 = {1,2,3,4,5,4};
 		int []testCodeError3 = {1,2,3,4};
 		int []testCodeError4 = {1,2,3,4,-9};
-		game.secretWord.setWord_length(5);
-		game.secretWord.setMin_number(1);
-		game.secretWord.setSecretWord(testCode);
 		
 		game.askCode();
+		for (int i = 0; i < 5; i++) {
+			assertEquals(testCode[i], game.getCodeTry()[i]);
+		}
+		
+		/*
+		//game.askCode();
+		for (int i = 0; i < 5; i++) {
+			assertNotEquals(testCode[i], game.getCodeTry()[i]);
+		}
+		
+		//game.askCode();
+		for (int i = 0; i < 5; i++) {
+			assertNotEquals(testCode[i], game.getCodeTry()[i]);
+		}
+		
+		//game.askCode();
+		for (int i = 0; i < 5; i++) {
+			assertNotEquals(testCode[i], game.getCodeTry()[i]);
+		}
+		
+		//game.askCode();
+		for (int i = 0; i < 5; i++) {
+			assertNotEquals(testCode[i], game.getCodeTry()[i]);
+		}
+		
 		assertEquals(testCode, game.getCodeTry());
-		//assertNotEquals(testCodeError1, game.getCodeTry());
+		game.askCode();
+		assertNotEquals(testCodeError1, game.getCodeTry());
+		game.askCode();
+		assertNotEquals(testCodeError2, game.getCodeTry());
+		game.askCode();
+		assertNotEquals(testCodeError3, game.getCodeTry());
+		game.askCode();
+		assertNotEquals(testCodeError4, game.getCodeTry());
+		
+		//assertNotEquals(testCodeError1, game.getCodeTry());*/
 	}
 	
 	/*//@Test
@@ -101,6 +133,50 @@ public class GameTest {
 	}*/
 	
 	
+	//@Test
+	public void testCorrectPosition() {
+		int correctPosition;
+		//int[] testCode = {1,2,3,4,5}; MOCK
+		
+		game.askCode(); //MOCK
+		game.secretWord.setMin_number(1);
+		game.secretWord.setWord_length(5);
+		int[] gameCode = {1,2,3,4,5};
+		game.secretWord.setSecretWord(gameCode);
+		
+		correctPosition = game.getNumbersCorrectPosition();
+		assertEquals(5, correctPosition);
+		
+		
+		int[] gameCode2 = {1,2,3,4,4};
+		game.secretWord.setSecretWord(gameCode2);
+		
+		correctPosition = game.getNumbersCorrectPosition();
+		assertEquals(4, correctPosition);
+		
+	}
 	
-
+	@Test
+	public void testAproxNumbers() {
+		int correctPosition;
+		//int[] testCode = {1,2,3,4,5}; MOCK
+		
+		
+		game.askCode(); //MOCK
+		game.secretWord.setMin_number(1);
+		game.secretWord.setWord_length(5);
+		int[] gameCode = {1,3,3,2,5};
+		game.secretWord.setSecretWord(gameCode);
+		
+		correctPosition = game.getAproxNumbers();
+		assertEquals(2, correctPosition);
+		
+		
+		int[] gameCode2 = {1,4,5,2,5};
+		game.secretWord.setSecretWord(gameCode2);
+		
+		correctPosition = game.getAproxNumbers();
+		assertEquals(3, correctPosition);
+	}
+	
 }
