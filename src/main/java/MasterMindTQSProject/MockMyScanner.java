@@ -1,44 +1,37 @@
 package MasterMindTQSProject;
 
-import java.util.InputMismatchException;
+import java.util.ArrayList;
+import java.util.List;
+
+//import java.util.InputMismatchException;
 
 public class MockMyScanner implements ScannerInterface{
 	
 	
-	String values;
+	String stringValue;
+	List<Integer> intList = new ArrayList<>();
+	int usados = 0;
 	
 	MockMyScanner(){
 	}
 	
 	@Override
-	public String introduceNewCode() {
-		return "";
+	public void setNewInt(int value) {
+		this.intList.add(value);
 	}
-	
-	
-	/*@Override
-	public String introduceNewCode(String values) {
-		try {
-			this.values = values;
-		} catch (InputMismatchException exception) {}
-		
-		return this.values;
-	}*/
 	
 	@Override
-	public int nextInt(int values) {
-		return values;
-	}
-	
-	public void addValues(String values) {
-		this.values = values;
+	public void setNewCode(String values) {
+		this.stringValue = values;
 	}
 
 	@Override
-	public String introduceNewCode(String values) {
-		// TODO Auto-generated method stub
-		return null;
+	public int nextInt() {
+		return this.intList.get(usados++);
 	}
-	
-	
+
+	@Override
+	public String nextLine() {
+		return this.stringValue;
+	}
 }

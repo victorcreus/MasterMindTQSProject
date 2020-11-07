@@ -7,16 +7,24 @@ public class Game {
 	private int tries;
 	private int codeTry[];
 	public SecretWord secretWord;
+	public ScannerInterface sc;
 	
-	Game(){
+	
+	Game(ScannerInterface sc){
 		tries = 10;
 		secretWord = new SecretWord();
+		this.sc = sc;
+	}
+	
+	public void setMyScanner(ScannerInterface scReceived) {
+		this.sc = scReceived;
 	}
 	
 	private void askTries() {
 		System.out.print("Insert the number of tries: ");
-		Scanner sc = new Scanner(System.in);
-		this.tries = sc.nextInt();
+		//Scanner sc = new Scanner(System.in);
+		//this.tries = sc.nextInt();
+		this.tries = this.sc.nextInt();
 	}
 	
 	public void selectMode() {
@@ -26,7 +34,8 @@ public class Game {
 			System.out.println("[1] Default mode");
 			System.out.println("[2] Customized mode");
 			System.out.print("Option selected: ");
-			Scanner sc = new Scanner(System.in);
+			//this.sc = new Scanner(System.in);
+			
 			mode = sc.nextInt();
 			switch(mode) {
 			case 1: 
@@ -61,7 +70,7 @@ public class Game {
 	
 	public void askCode() {
 		boolean converted = false;
-		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(System.in);
 		int []numbersList = new int[this.secretWord.getWord_length()];
 		
 		while(!converted) {
@@ -130,8 +139,6 @@ public class Game {
 				aproxNumbers++;
 			}
 		}
-		
-		
 		return aproxNumbers - correctPosition;
 		
 	}

@@ -5,45 +5,56 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GameTest {
-	
-	Game game = new Game();
+	MockMyScanner sc = new MockMyScanner();
+	//MyScanner nsc = new MyScanner();
+	Game game = new Game(sc);
 		
-	//@Test
+	@Test
 	public void testAskNumTriesDefault() {
 		int testTries = 10;
 		assertEquals(testTries,game.getTries());
 	}
 	
-	//@Test
+	@Test
 	public void testAskNumTriesCustomized() {
 		int testTries = 15;
+		game.sc.setNewInt(15);
 		game.proxyAskTries();
 		assertEquals(testTries,game.getTries());
 	}
 	
-	//@Test
+	@Test
 	public void testSelectModeDefault() {
 		int testLengthTest = 5;
 		int testMinValue = 1;
 		int testTries = 10;
+
+		game.sc.setNewInt(1); //Game mode
+
 		game.selectMode();
 		assertEquals(testLengthTest, game.secretWord.getWord_length());
 		assertEquals(testMinValue, game.secretWord.getMin_number());
 		assertEquals(testTries, game.getTries());
 	}
 	
-	//@Test
+	@Test
 	public void testSelectModeCustomized() {
 		int testLengthTest = 4;
 		int testMinValue = 5;
 		int testTries = 15;
+		
+		game.sc.setNewInt(2); //Game mode
+		game.sc.setNewInt(testLengthTest); //WordLength
+		game.sc.setNewInt(testMinValue); //MinValue
+		game.sc.setNewInt(testTries); //Tries
 		game.selectMode();
+		
 		assertEquals(testLengthTest, game.secretWord.getWord_length());
 		assertEquals(testMinValue, game.secretWord.getMin_number());
 		assertEquals(testTries, game.getTries());
 	}
 	
-	//@Test
+	//@Test //Encontramos bucle infinito porque el ASK pide valores VALIDO y no los damos
 	/*Falta crear MockObject para la lectura del askCode, sino el usuario
 	debe ingresar los datos manualmente. Después se debe comprobar si es
 	válido o se debe pedir de nuevo.
@@ -60,43 +71,42 @@ public class GameTest {
 		int []testCodeError3 = {1,2,3,4};
 		int []testCodeError4 = {1,2,3,4,-9};
 		
+		
+		String mockCode = "1 2 3 4 5";
+		game.sc.setNewCode(mockCode);
 		game.askCode();
 		for (int i = 0; i < 5; i++) {
 			assertEquals(testCode[i], game.getCodeTry()[i]);
 		}
 		
-		/*
-		//game.askCode();
+		mockCode = "1 2 8 4 5";
+		game.sc.setNewCode(mockCode);
+		game.askCode();
 		for (int i = 0; i < 5; i++) {
 			assertNotEquals(testCode[i], game.getCodeTry()[i]);
 		}
 		
-		//game.askCode();
+		mockCode = "1 2 3 4 5 4";
+		game.sc.setNewCode(mockCode);
+		game.askCode();
 		for (int i = 0; i < 5; i++) {
 			assertNotEquals(testCode[i], game.getCodeTry()[i]);
 		}
 		
-		//game.askCode();
+		
+		mockCode = "1 2 3 4";
+		game.sc.setNewCode(mockCode);
+		game.askCode();
 		for (int i = 0; i < 5; i++) {
 			assertNotEquals(testCode[i], game.getCodeTry()[i]);
 		}
 		
-		//game.askCode();
+		mockCode = "1 2 3 4 -9";
+		game.sc.setNewCode(mockCode);
+		game.askCode();
 		for (int i = 0; i < 5; i++) {
 			assertNotEquals(testCode[i], game.getCodeTry()[i]);
 		}
-		
-		assertEquals(testCode, game.getCodeTry());
-		game.askCode();
-		assertNotEquals(testCodeError1, game.getCodeTry());
-		game.askCode();
-		assertNotEquals(testCodeError2, game.getCodeTry());
-		game.askCode();
-		assertNotEquals(testCodeError3, game.getCodeTry());
-		game.askCode();
-		assertNotEquals(testCodeError4, game.getCodeTry());
-		
-		//assertNotEquals(testCodeError1, game.getCodeTry());*/
 	}
 	
 	/*//@Test
@@ -133,12 +143,13 @@ public class GameTest {
 	}*/
 	
 	
-	//@Test
+	@Test
 	public void testCorrectPosition() {
 		int correctPosition;
-		//int[] testCode = {1,2,3,4,5}; MOCK
+		String testCode = "1 2 3 4 5";
 		
-		game.askCode(); //MOCK
+		game.sc.setNewCode(testCode);
+		game.askCode();
 		game.secretWord.setMin_number(1);
 		game.secretWord.setWord_length(5);
 		int[] gameCode = {1,2,3,4,5};
@@ -159,10 +170,10 @@ public class GameTest {
 	@Test
 	public void testAproxNumbers() {
 		int correctPosition;
-		//int[] testCode = {1,2,3,4,5}; MOCK
 		
-		
-		game.askCode(); //MOCK
+		String testCode = "1 2 3 4 5"; 
+		game.sc.setNewCode(testCode);
+		game.askCode();
 		game.secretWord.setMin_number(1);
 		game.secretWord.setWord_length(5);
 		int[] gameCode = {1,3,3,2,5};

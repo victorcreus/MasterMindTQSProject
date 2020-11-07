@@ -1,7 +1,14 @@
 package MasterMindTQSProject;
 
 public interface ScannerInterface {
-	String introduceNewCode();
-	String introduceNewCode(String values);
-	int nextInt(int values);
+	void setNewCode(String values);
+	void setNewInt(int values);
+
+	int nextInt();
+	String nextLine();
+	
+	
+	//String introduceNewCode(String values);
+	//int nextInt(int values);
+	//int nextInt();
 }
