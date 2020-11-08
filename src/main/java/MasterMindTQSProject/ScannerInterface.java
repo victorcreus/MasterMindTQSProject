@@ -6,9 +6,4 @@ public interface ScannerInterface {
 
 	int nextInt();
 	String nextLine();
-	
-	
-	//String introduceNewCode(String values);
-	//int nextInt(int values);
-	//int nextInt();
 }

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class GameTest {
 	MockMyScanner sc = new MockMyScanner();
-	//MyScanner nsc = new MyScanner();
+	MyScanner nsc = new MyScanner();
 	Game game = new Game(sc);
 		
 	@Test

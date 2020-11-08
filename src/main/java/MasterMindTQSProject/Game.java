@@ -1,7 +1,5 @@
 package MasterMindTQSProject;
 
-import java.util.Scanner;
-
 public class Game {
 
 	private int tries;
@@ -40,6 +38,7 @@ public class Game {
 			switch(mode) {
 			case 1: 
 				this.secretWord = new SecretWord();
+				this.secretWord.generateSecretWord(this.secretWord.getWord_length(), this.secretWord.getMin_number());
 				break;
 			case 2:
 				int length;
@@ -50,6 +49,7 @@ public class Game {
 				minValue = sc.nextInt();
 				this.secretWord = new SecretWord(length,minValue);
 				askTries();
+				this.secretWord.generateSecretWord(length, minValue);
 				break;
 			default:
 				System.out.print("This is not a correct option");
@@ -75,7 +75,7 @@ public class Game {
 		
 		while(!converted) {
 			System.out.println("Insert your answer code; example [1 2 3 4 5]");
-			String strNumbers = sc.nextLine();
+			String strNumbers = this.sc.nextLine();
 			String []StrNumbersArray = strNumbers.split(" ");
 
 			if(StrNumbersArray.length == this.secretWord.getWord_length()) {
@@ -85,8 +85,14 @@ public class Game {
 				
 				this.codeTry=numbersList;
 				
-				if(this.itIsInRange())
+				if(this.itIsInRange()) {
 					converted = true;
+				} else {
+					System.out.println("Some values are not in range!");
+				}
+					
+			} else {
+				System.out.println("Introduce a correct length code!");
 			}
 		}
 	}

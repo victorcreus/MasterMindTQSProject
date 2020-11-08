@@ -11,25 +11,6 @@ public class MyScanner implements ScannerInterface{
 		newValues = new Scanner(System.in);
 	}
 	
-	/*@Override
-	public String introduceNewCode() {
-		try {
-			this.values = newValues.nextLine();
-		} catch (InputMismatchException exception) {}
-		
-		return this.values;
-	}
-	
-	@Override
-	public String introduceNewCode(String values) {
-		return "";
-	}
-	
-	@Override
-	public int nextInt(int values) {
-		return newValues.nextInt();
-	}*/
-	
 	@Override
 	public void setNewCode(String values) {}
 	

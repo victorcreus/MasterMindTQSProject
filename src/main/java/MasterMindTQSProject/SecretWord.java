@@ -82,9 +82,6 @@ public class SecretWord{
 		for (int i = 0; i < length; i++) {
 			this.secretWord[i] = r.nextInt(high-low)+low;
 		}
-		for(int i = 0; i< length; i++) {
-			System.out.println(this.secretWord[i]);
-		}
 	}
 	
 	private boolean hasDuplicated(int[] secret) {
