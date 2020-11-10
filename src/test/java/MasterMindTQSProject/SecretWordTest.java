@@ -29,7 +29,7 @@ public class SecretWordTest {
 		assertEquals(testCustomized,swp.getMin_number());
 	}
 	
-	//@Test
+	@Test
 	public void testSetSecretWord() {
 		int testWordDefault[] = new int [] {1,2,3,4,5};
 		int testWordCustomized[] = new int [] {5,6,7,8};
@@ -40,7 +40,7 @@ public class SecretWordTest {
 		
 	}
 	
-	//@Test
+	@Test
 	public void testHasDuplicated() {
 		int testWordNoDuplicated[] = new int [] {1,2,3,4,5};
 		int testWordDuplicated[] = new int [] {1,2,3,1,5};
@@ -52,7 +52,7 @@ public class SecretWordTest {
 		assertTrue(sw.proxyHasDuplicated(testWordDuplicatedAll));
 	}
 	
-	//@Test
+	@Test
 	public void testGenerateCodeLength() {
 		int testLengthDefault = 5;
 		int testLengthCustomized = 4;
@@ -64,19 +64,7 @@ public class SecretWordTest {
 		assertEquals(testLengthCustomized,codeCustomized.length);
 	}
 	
-	//@Test
-	public void testGenerateCodeMinusValue(){
-		int testMinusValueDefault = 1;
-		int testMinusValueCustomized = 5;
-		sw.generateSecretWord(5, testMinusValueDefault);
-		int codeDefault[] = sw.getSecretWord();
-		swp.generateSecretWord(4, testMinusValueCustomized);
-		int codeCustomized[] = swp.getSecretWord();
-		Arrays.sort(codeDefault);
-		Arrays.sort(codeCustomized);
-		assertEquals(testMinusValueDefault,codeDefault[0]);
-		assertEquals(testMinusValueCustomized,codeCustomized[0]);
-	}
+	
 	
 	@Test
 	public void testGenerateCodeCorrectValues(){

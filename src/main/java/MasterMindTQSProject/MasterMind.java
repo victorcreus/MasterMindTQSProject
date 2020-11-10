@@ -1,35 +1,41 @@
 package MasterMindTQSProject;
 
 public class MasterMind {
-	//ScannerInterface sc = new MyScanner();
-	static ScannerInterface sc = new MockMyScanner();
-	static Game myGame = new Game(sc);
-			
-	public static int usedTries = 0;
-	public static int correct = 0;
-	public static int aprox = 0;
-	public static boolean endGame = false;
 	
-	public static void main() {
-		System.out.println(menu());
+	static ScannerInterface sc;
+	static Game myGame;
+			
+	public static int usedTries;
+	public static int correct;
+	public static int aprox;
+	public static boolean endGame;
+	
+	
+	public MasterMind(ScannerInterface sc) {
+		this.sc = sc;
+		
+		this.myGame = new Game(this.sc);
+		this.usedTries = 0;
+		this.correct = 0;
+		this.aprox = 0;
+		this.endGame = false;
+	}
+	
 
+	public void initGame() {
+		System.out.println(menu());
 		myGame.selectMode();
-		
-		System.out.println("\n");
-		for(int i=0; i<myGame.secretWord.getWord_length(); i++) {
-			System.out.print(myGame.secretWord.getSecretWord()[i]+" ");
-		}
-		System.out.println("\n");
-		
+	}
+	
+	public void startGame() {
 		scoreBoard(myGame);
-		
+
 		while(!endGame && usedTries < myGame.getTries()) {
 			
 			myGame.askCode();
 			usedTries++;
 			correct = myGame.getNumbersCorrectPosition();
 			aprox = myGame.getAproxNumbers();
-			
 			
 			if(correct != myGame.secretWord.getWord_length()) {
 				scoreBoard(myGame);
@@ -38,20 +44,15 @@ public class MasterMind {
 			}
 		}
 		
-		if(endGame) {
-			System.out.println(endGame(1));
-		} else {
-			System.out.println(endGame(0));
-		}
-		
+		endGame();
 	}
 	
 	private static String menu() {
 		String text = 
-		"----------------------------" +
-		"-------- MASTER MIND -------" +
-		"---------- WELCOME ---------" + 
-		"----------------------------";
+		"----------------------------\n" +
+		"------- MASTER MIND --------\n" +
+		"--------- WELCOME ----------\n" + 
+		"----------------------------\n";
 		return text;
 	}
 	
@@ -63,23 +64,54 @@ public class MasterMind {
 		System.out.println("\n");
 	}
 	
-	private static String endGame(int value) {
+	private void endGame() {
+		if(endGame) {
+			System.out.println(winner(1));
+		} else {
+			System.out.println(winner(0));
+		}
+	}
+	
+	
+	public static String winner(int value) {
 		if(value == 1) {
 			return "You win!";
 		} else {
 			return "You lose!";
 		}
 	}
+	
+	public static ScannerInterface proxyGetSc() {
+		return sc;
+	}
 
+
+	public static Game proxyGetMyGame() {
+		return myGame;
+	}
+
+
+	public static int proxyGetUsedTries() {
+		return usedTries;
+	}
+
+
+	public static int proxyGetCorrect() {
+		return correct;
+	}
+
+
+	public static int proxyGetAprox() {
+		return aprox;
+	}
+
+
+	public static boolean proxyIsEndGame() {
+		return endGame;
+	}
 	
-	//Pedir al usuario numero de intentos
-	//Pedir al usuario por defecto o personalizado
-	//En caso por personalizado: Pedir minValue y long
-	//Gen. palabra clave
-	//Pedir su respuesta
-	//Dar aciertos y aproximaciones
-	//Si no es correcto del todo ir 3 pasos atras
-	//Si es correcto o se acaban el numero de intentos: FIN DE PARTIDA
-	
-	
+	public static void proxySetEndGame(boolean endGame) {
+		MasterMind.endGame = endGame;
+	}
+
 }

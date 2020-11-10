@@ -70,7 +70,6 @@ public class Game {
 	
 	public void askCode() {
 		boolean converted = false;
-		//Scanner sc = new Scanner(System.in);
 		int []numbersList = new int[this.secretWord.getWord_length()];
 		
 		while(!converted) {
