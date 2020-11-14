@@ -55,13 +55,27 @@ public class SecretWordTest {
 	@Test
 	public void testGenerateCodeLength() {
 		int testLengthDefault = 5;
+		int testMinumValueDefault = 1;
 		int testLengthCustomized = 4;
-		sw.generateSecretWord(testLengthDefault, 1);
+		int testMinumValueCustomized = 5;
+		sw.generateSecretWord(testLengthDefault, testMinumValueDefault);
 		int codeDefault[] = sw.getSecretWord();
-		swp.generateSecretWord(testLengthCustomized, 5);
+		swp.generateSecretWord(testLengthCustomized, testMinumValueCustomized);
 		int codeCustomized[] = swp.getSecretWord();
 		assertEquals(testLengthDefault,codeDefault.length);
 		assertEquals(testLengthCustomized,codeCustomized.length);
+		Arrays.sort(codeDefault);
+		Arrays.sort(codeCustomized);
+		boolean inRangeDefault = false;
+		boolean inRangeCustom = false;
+		if (codeDefault[0] >= testMinumValueDefault && codeDefault[(codeDefault.length)-1] <= (testMinumValueDefault+testLengthDefault)-1) {
+			inRangeDefault = true;
+		}
+		if (codeCustomized[0] >= testMinumValueCustomized && codeCustomized[(codeCustomized.length)-1] <= (testMinumValueCustomized+testLengthCustomized)-1) {
+			inRangeCustom = true;
+		}
+		assertTrue(inRangeDefault);
+		assertTrue(inRangeCustom);
 	}
 	
 	
