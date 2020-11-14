@@ -44,6 +44,17 @@ public class SecretWord{
 		this.secretWord = secretWord;
 	}
 	
+	
+	public void generateSecretWord(int length, int minValue) {
+		Random r = new Random();
+		int low, high;
+		low = minValue;
+		high = (length-1) + minValue;
+		for (int i = 0; i < length; i++) {
+			this.secretWord[i] = r.nextInt(high-low)+low;
+		}
+	}
+	
 	//This function generate a code without duplicated numbers
 	/*public void generateSecretWord(int length, int minValue) {
 		Random r = new Random();
@@ -73,16 +84,6 @@ public class SecretWord{
 			System.out.println(this.secretWord[i]);
 		}
 	}*/
-	
-	public void generateSecretWord(int length, int minValue) {
-		Random r = new Random();
-		int low, high;
-		low = minValue;
-		high = (length-1) + minValue;
-		for (int i = 0; i < length; i++) {
-			this.secretWord[i] = r.nextInt(high-low)+low;
-		}
-	}
 	
 	/*
 	private boolean hasDuplicated(int[] secret) {

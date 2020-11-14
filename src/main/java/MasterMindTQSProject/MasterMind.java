@@ -33,21 +33,6 @@ public class MasterMind {
 	
 	public int askPlayAgain() {
 		int again = 0;
-		/*try {
-			System.out.println("Do you want to play again? Yes = 1, No = 2");
-			again = sc.nextInt();
-			if(again == 1 || again == 2) {
-				playAgain(again);
-			} else {
-				System.out.println("Please, enter a correct option!");
-				askPlayAgain();
-			}
-		} catch (NumberFormatException ex) {
-			//System.err.println("Option must be an Integer!"+ex);
-			System.out.println("Option must be an Integer!");
-			askPlayAgain();
-		}
-		return again;*/
 		do {
 			again = sc.nextInt();
 			switch(again) {

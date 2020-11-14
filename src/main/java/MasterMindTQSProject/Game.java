@@ -20,8 +20,6 @@ public class Game {
 	
 	private void askTries() {
 		System.out.print("Insert the number of tries: ");
-		//Scanner sc = new Scanner(System.in);
-		//this.tries = sc.nextInt();
 		this.tries = this.sc.nextInt();
 	}
 	
@@ -32,7 +30,6 @@ public class Game {
 			System.out.println("[1] Default mode");
 			System.out.println("[2] Customized mode");
 			System.out.print("Option selected: ");
-			//this.sc = new Scanner(System.in);
 			
 			mode = sc.nextInt();
 			switch(mode) {

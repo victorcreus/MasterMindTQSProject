@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class MyScanner implements ScannerInterface{
 	
 	Scanner newValues;
-	//String values;
 	
 	MyScanner(){
 		newValues = new Scanner(System.in);

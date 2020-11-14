@@ -9,7 +9,6 @@ import org.junit.Test;
 
 public class SecretWordTest {
 
-
 	SecretWord sw = new SecretWord();
 	SecretWord swp = new SecretWord(4,5);
 
@@ -40,18 +39,6 @@ public class SecretWordTest {
 		
 	}
 	
-	/*//@Test
-	public void testHasDuplicated() {
-		int testWordNoDuplicated[] = new int [] {1,2,3,4,5};
-		int testWordDuplicated[] = new int [] {1,2,3,1,5};
-		int testWordDuplicatedAll[] = new int [] {1,1,1,1,1,1,1,1,1,1,1,5};
-		//System.out.println(sw.proxyHasDuplicated(testWordNoDuplicated));
-		assertFalse(sw.proxyHasDuplicated(testWordNoDuplicated));
-		//System.out.println(sw.proxyHasDuplicated(testWordDuplicated));
-		assertTrue(sw.proxyHasDuplicated(testWordDuplicated));
-		assertTrue(sw.proxyHasDuplicated(testWordDuplicatedAll));
-	}*/
-	
 	@Test
 	public void testGenerateCodeLength() {
 		int testLengthDefault = 5;
@@ -78,7 +65,17 @@ public class SecretWordTest {
 		assertTrue(inRangeCustom);
 	}
 	
-	
+	/*//@Test
+	public void testHasDuplicated() {
+		int testWordNoDuplicated[] = new int [] {1,2,3,4,5};
+		int testWordDuplicated[] = new int [] {1,2,3,1,5};
+		int testWordDuplicatedAll[] = new int [] {1,1,1,1,1,1,1,1,1,1,1,5};
+		//System.out.println(sw.proxyHasDuplicated(testWordNoDuplicated));
+		assertFalse(sw.proxyHasDuplicated(testWordNoDuplicated));
+		//System.out.println(sw.proxyHasDuplicated(testWordDuplicated));
+		assertTrue(sw.proxyHasDuplicated(testWordDuplicated));
+		assertTrue(sw.proxyHasDuplicated(testWordDuplicatedAll));
+	}*/
 	
 	/*@Test
 	public void testGenerateCodeCorrectValues(){

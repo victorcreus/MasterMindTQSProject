@@ -3,7 +3,6 @@ package MasterMindTQSProject;
 import java.util.ArrayList;
 import java.util.List;
 
-//import java.util.InputMismatchException;
 
 public class MockMyScanner implements ScannerInterface{
 	
