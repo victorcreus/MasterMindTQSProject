@@ -84,6 +84,7 @@ public class SecretWord{
 		}
 	}
 	
+	/*
 	private boolean hasDuplicated(int[] secret) {
 		int i, j;
 		boolean duplicated = false;
@@ -97,9 +98,9 @@ public class SecretWord{
 		}
 		
 		return duplicated;
-	}
+	}*/
 	
-	public boolean itIsInRange() {
+	/*public boolean itIsInRange() {
 		boolean inRange = true;
 		int i = 0;
 		int min = this.min_number;
@@ -114,11 +115,11 @@ public class SecretWord{
 		}
 		
 		return inRange;
-	}
+	}*/
 	
-	
+	/*
 	public boolean proxyHasDuplicated(int[] secretWord) 
 	{
 		return hasDuplicated(secretWord);
-	}
+	}*/
 }

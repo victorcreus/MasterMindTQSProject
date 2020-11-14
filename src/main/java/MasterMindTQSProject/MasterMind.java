@@ -32,9 +32,35 @@ public class MasterMind {
 	}
 	
 	public int askPlayAgain() {
-		System.out.println("Do you want to play again? Yes = 1, No = 2");
-		int again = sc.nextInt();
-		playAgain(again);
+		int again = 0;
+		/*try {
+			System.out.println("Do you want to play again? Yes = 1, No = 2");
+			again = sc.nextInt();
+			if(again == 1 || again == 2) {
+				playAgain(again);
+			} else {
+				System.out.println("Please, enter a correct option!");
+				askPlayAgain();
+			}
+		} catch (NumberFormatException ex) {
+			//System.err.println("Option must be an Integer!"+ex);
+			System.out.println("Option must be an Integer!");
+			askPlayAgain();
+		}
+		return again;*/
+		do {
+			again = sc.nextInt();
+			switch(again) {
+			case 1:
+				playAgain(again);
+				break;
+			case 2:
+				break;
+			default:
+				System.out.println("Please, enter a correct option!");
+			}
+		}while(again != 1 && again != 2);
+		
 		return again;
 	}
 

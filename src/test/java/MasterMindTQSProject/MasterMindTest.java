@@ -121,6 +121,7 @@ public class MasterMindTest {
 		newGame.myGame.secretWord.setSecretWord(correctCode);
 		newGame.myGame.sc.setNewCode(code);
 		newGame.startGame();
+		newGame.myGame.sc.setNewInt('a');
 		newGame.myGame.sc.setNewInt(1);
 		int again = newGame.askPlayAgain();
 		
@@ -144,9 +145,10 @@ public class MasterMindTest {
 		newGame.myGame.sc.setNewCode(code);
 		newGame.startGame();
 		newGame.myGame.sc.setNewInt(0);
+		newGame.myGame.sc.setNewInt(2);
 		int again = newGame.askPlayAgain();
 		
-		assertEquals(again,0);
+		assertEquals(again,2);
 		assertEquals(newGame.usedTries,newGame.usedTries);
 		assertEquals(newGame.correct,newGame.correct);
 		assertEquals(newGame.aprox,newGame.aprox);
@@ -238,6 +240,7 @@ public class MasterMindTest {
 		
 		assertTrue(newGame.endGame);
 		
+		newGame.myGame.sc.setNewInt(0);
 		newGame.myGame.sc.setNewInt(1);
 		again = newGame.askPlayAgain();
 		
@@ -287,6 +290,9 @@ public class MasterMindTest {
 		newGame.startGame();
 		
 		assertTrue(newGame.endGame);
+		newGame.myGame.sc.setNewInt('a');
+		newGame.myGame.sc.setNewInt(2);
+		again = newGame.askPlayAgain();
 		
 	}
 }
