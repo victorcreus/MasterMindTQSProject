@@ -54,16 +54,9 @@ public class GameTest {
 		assertEquals(testTries, game.getTries());
 	}
 	
-	//@Test //Encontramos bucle infinito porque el ASK pide valores VALIDO y no los damos
-	/*Falta crear MockObject para la lectura del askCode, sino el usuario
-	debe ingresar los datos manualmente. Después se debe comprobar si es
-	válido o se debe pedir de nuevo.
-	Preguntas tutoria:
-	Mock Objects
-	FeedBack general
-	¿Se puede involucrar al usuario en los test? (Scanner de datos)
-	¿Cómo hacemos assertEquals para arrays de datos?*/
-	
+	//@Test 
+	//We found a infinite loop because askCode function ask for correct values and we doesn't give them.
+	//Our askCode function has checker for correct values. If we give a incorrect code, it asks again.
 	public void testInsertCode() {
 		int []testCode = {1,2,3,4,5};
 		int []testCodeError1 = {1,2,8,4,5};
@@ -107,6 +100,13 @@ public class GameTest {
 		for (int i = 0; i < 5; i++) {
 			assertNotEquals(testCode[i], game.getCodeTry()[i]);
 		}
+		
+		mockCode = "1 2 a 4 -9";
+		game.sc.setNewCode(mockCode);
+		game.askCode();
+		for (int i = 0; i < 5; i++) {
+			assertNotEquals(testCode[i], game.getCodeTry()[i]);
+		}
 	}
 	
 	/*//@Test
@@ -144,14 +144,14 @@ public class GameTest {
 	
 	
 	@Test
-	public void testCorrectPosition() {
+	public void testDefaultCorrectPosition() {
 		int correctPosition;
 		String testCode = "1 2 3 4 5";
 		
 		game.sc.setNewCode(testCode);
-		game.askCode();
 		game.secretWord.setMin_number(1);
 		game.secretWord.setWord_length(5);
+		game.askCode();
 		int[] gameCode = {1,2,3,4,5};
 		game.secretWord.setSecretWord(gameCode);
 		
@@ -168,14 +168,14 @@ public class GameTest {
 	}
 	
 	@Test
-	public void testAproxNumbers() {
+	public void testDefaultAproxNumbers() {
 		int correctPosition;
 		
 		String testCode = "1 2 3 4 5"; 
 		game.sc.setNewCode(testCode);
-		game.askCode();
 		game.secretWord.setMin_number(1);
 		game.secretWord.setWord_length(5);
+		game.askCode();
 		int[] gameCode = {1,3,3,2,5};
 		game.secretWord.setSecretWord(gameCode);
 		
@@ -190,4 +190,50 @@ public class GameTest {
 		assertEquals(3, correctPosition);
 	}
 	
+	@Test
+	public void testCustomizeCorrectPosition() {
+		int correctPosition;
+		String testCode = "5 6 7 8 9 10 11 12";
+		
+		game.secretWord.setMin_number(5);
+		game.secretWord.setWord_length(8);
+		game.sc.setNewCode(testCode);
+		game.askCode();
+		int[] gameCode = {5,6,7,8,9,10,11,12};
+		game.secretWord.setSecretWord(gameCode);
+		
+		correctPosition = game.getNumbersCorrectPosition();
+		assertEquals(8, correctPosition);
+		
+		
+		int[] gameCode2 = {5,6,7,8,9,10,10,12};
+		game.secretWord.setSecretWord(gameCode2);
+		
+		correctPosition = game.getNumbersCorrectPosition();
+		assertEquals(7, correctPosition);
+		
+	}
+	
+	@Test
+	public void testCustomizeAproxNumbers() {
+		int correctPosition;
+		
+		String testCode = "5 6 7 8 9 10 11 12";
+		game.sc.setNewCode(testCode);
+		game.secretWord.setMin_number(5);
+		game.secretWord.setWord_length(8);
+		game.askCode();
+		int[] gameCode = {5,6,8,8,9,12,11,12};
+		game.secretWord.setSecretWord(gameCode);
+		
+		correctPosition = game.getAproxNumbers();
+		assertEquals(2, correctPosition);
+		
+		
+		int[] gameCode2 = {5,8,7,8,9,10,10,11};
+		game.secretWord.setSecretWord(gameCode2);
+		
+		correctPosition = game.getAproxNumbers();
+		assertEquals(3, correctPosition);
+	}
 }

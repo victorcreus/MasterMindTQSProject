@@ -21,6 +21,22 @@ public class MasterMind {
 		this.endGame = false;
 	}
 	
+	private void playAgain(int again) {
+		if(again == 1) {
+			this.usedTries = 0;
+			this.correct = 0;
+			this.aprox = 0;
+			this.endGame = false;
+		}
+		
+	}
+	
+	public int askPlayAgain() {
+		System.out.println("Do you want to play again? Yes = 1, No = 2");
+		int again = sc.nextInt();
+		playAgain(again);
+		return again;
+	}
 
 	public void initGame() {
 		System.out.println(menu());

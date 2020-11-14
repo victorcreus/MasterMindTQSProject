@@ -9,8 +9,10 @@ public class MockMyScanner implements ScannerInterface{
 	
 	
 	String stringValue;
+	List<String> stringList = new ArrayList<>();
 	List<Integer> intList = new ArrayList<>();
-	int usados = 0;
+	int intUsed = 0;
+	int stringUsed = 0;
 	
 	MockMyScanner(){
 	}
@@ -22,16 +24,17 @@ public class MockMyScanner implements ScannerInterface{
 	
 	@Override
 	public void setNewCode(String values) {
-		this.stringValue = values;
+		this.stringList.add(values);
 	}
 
 	@Override
 	public int nextInt() {
-		return this.intList.get(usados++);
+		return this.intList.get(intUsed++);
 	}
 
 	@Override
 	public String nextLine() {
-		return this.stringValue;
+		return this.stringList.get(stringUsed++);
 	}
+
 }

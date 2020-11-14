@@ -72,28 +72,35 @@ public class Game {
 		boolean converted = false;
 		int []numbersList = new int[this.secretWord.getWord_length()];
 		
-		while(!converted) {
-			System.out.println("Insert your answer code; example [1 2 3 4 5]");
-			String strNumbers = this.sc.nextLine();
-			String []StrNumbersArray = strNumbers.split(" ");
+		try{
+			while(!converted) {
+				System.out.println("Insert your answer code; example [1 2 3 4 5]");
+				String strNumbers = this.sc.nextLine();
+				String []StrNumbersArray = strNumbers.split(" ");
 
-			if(StrNumbersArray.length == this.secretWord.getWord_length()) {
-				for(int i=0; i<this.secretWord.getWord_length(); i++) {
-					numbersList[i] = Integer.parseInt(StrNumbersArray[i]);
-				}
-				
-				this.codeTry=numbersList;
-				
-				if(this.itIsInRange()) {
-					converted = true;
-				} else {
-					System.out.println("Some values are not in range!");
-				}
+				if(StrNumbersArray.length == this.secretWord.getWord_length()) {
+					for(int i=0; i<this.secretWord.getWord_length(); i++) {
+						numbersList[i] = Integer.parseInt(StrNumbersArray[i]);
+					}
 					
-			} else {
-				System.out.println("Introduce a correct length code!");
+					this.codeTry=numbersList;
+					
+					if(this.itIsInRange()) {
+						converted = true;
+					} else {
+						System.out.println("Some values are not in range!");
+					}
+						
+				} else {
+					System.out.println("Introduce a correct length code!");
+				}
 			}
+		} catch (NumberFormatException ex) {
+			//System.err.println("Some values are not integers: "+ex);
+			System.out.println("Some values are not integers! Try again:");
+			this.askCode();
 		}
+		
 	}
 	
 	public boolean itIsInRange() {
