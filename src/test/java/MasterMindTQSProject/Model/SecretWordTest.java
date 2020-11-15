@@ -10,9 +10,12 @@ import MasterMindTQSProject.Model.SecretWord;
 
 
 public class SecretWordTest {
-
-	SecretWord sw = new SecretWord();
-	SecretWord swp = new SecretWord(4,5);
+	RandomInterface r = new MyRandom();
+	RandomInterface mr = new MockRandom();
+	
+	
+	SecretWord sw = new SecretWord(r);
+	SecretWord swp = new SecretWord(4,5,r);
 
 	@Test
 	public void testSetWordLength() {
@@ -42,7 +45,7 @@ public class SecretWordTest {
 	}
 	
 	@Test
-	public void testGenerateCodeLength() {
+	public void testGenerateCode() {
 		int testLengthDefault = 5;
 		int testMinumValueDefault = 1;
 		int testLengthCustomized = 4;
@@ -87,5 +90,33 @@ public class SecretWordTest {
 		assertTrue(swp.itIsInRange());
 	}*/
 	
+	 @Test
+	 public void testMockRandom() {
+		int []expectedCodeDefault = {5,5,5,5,5};
+		int []expectedCodeCustom = {3,3,3,3};
+		
+		int testLengthDefault = 5;
+		int testMinumValueDefault = 1;
+		int testLengthCustomized = 4;
+		int testMinumValueCustomized = 5;
+		
+		sw.setRandomInterface(mr);
+		sw.r.setInt(5);
+		sw.generateSecretWord(testLengthDefault, testMinumValueDefault);
+		int codeDefault[] = sw.getSecretWord();
+		
+		swp.setRandomInterface(mr);
+		swp.r.setInt(3);
+		swp.generateSecretWord(testLengthCustomized, testMinumValueCustomized);
+		int codeCustomized[] = swp.getSecretWord();
+		
+		
+		for(int i=0; i<5; i++) {
+			assertEquals(sw.getSecretWord()[i],expectedCodeDefault[i]);
+		}
+		for(int i=0; i<4; i++) {
+			assertEquals(swp.getSecretWord()[i],expectedCodeCustom[i]);
+		}
+	 }
 
 }

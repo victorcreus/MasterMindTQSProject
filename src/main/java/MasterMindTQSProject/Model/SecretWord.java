@@ -7,17 +7,25 @@ public class SecretWord{
 	private int word_length;
 	private int min_number;
 	private int secretWord[];
+	RandomInterface r;
 	
-	public SecretWord() {
+	
+	public void setRandomInterface(RandomInterface r) {
+		this.r = r;
+	}
+	
+	public SecretWord(RandomInterface random) {
 		word_length = 5;
 		min_number = 1;
 		secretWord = new int[word_length];
+		this.r = random;
 	}
 	
-	public SecretWord(int length, int min) {
+	public SecretWord(int length, int min, RandomInterface random) {
 		word_length = length;
 		min_number = min;
 		secretWord = new int[word_length];
+		this.r = random;
 	}
 
 	public int getWord_length() {
@@ -46,12 +54,11 @@ public class SecretWord{
 	
 	
 	public void generateSecretWord(int length, int minValue) {
-		Random r = new Random();
 		int low, high;
 		low = minValue;
 		high = (length-1) + minValue;
 		for (int i = 0; i < length; i++) {
-			this.secretWord[i] = r.nextInt(high-low)+low;
+			this.secretWord[i] = r.nextInt(high,low);
 		}
 	}
 	

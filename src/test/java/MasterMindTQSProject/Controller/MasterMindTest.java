@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import MasterMindTQSProject.Controller.MasterMind;
 import MasterMindTQSProject.Model.MockMyScanner;
+import MasterMindTQSProject.Model.MockRandom;
+import MasterMindTQSProject.Model.MyRandom;
+import MasterMindTQSProject.Model.RandomInterface;
 import MasterMindTQSProject.Model.ScannerInterface;
 import MasterMindTQSProject.View.*;
 
@@ -13,7 +16,10 @@ public class MasterMindTest {
 	//ScannerInterface sc = new myScanner();
 	ScannerInterface sc = new MockMyScanner();
 	
-	MasterMind newGame = new MasterMind(sc);
+	RandomInterface r = new MyRandom();
+	//RandomInterface r = new MockRandom();
+
+	MasterMind newGame = new MasterMind(sc,r);
 	
 	@Test
 	public void testDefaultGameWin() {

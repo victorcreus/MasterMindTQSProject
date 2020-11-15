@@ -1,5 +1,6 @@
 package MasterMindTQSProject.Controller;
 
+import MasterMindTQSProject.Model.RandomInterface;
 import MasterMindTQSProject.Model.ScannerInterface;
 import MasterMindTQSProject.View.GameView;
 import MasterMindTQSProject.Model.SecretWord;
@@ -10,12 +11,13 @@ public class Game {
 	private int codeTry[];
 	public SecretWord secretWord;
 	public ScannerInterface sc;
+	public RandomInterface r;
 	
-	
-	Game(ScannerInterface sc){
+	Game(ScannerInterface sc, RandomInterface r){
 		tries = 10;
-		secretWord = new SecretWord();
+		secretWord = new SecretWord(r);
 		this.sc = sc;
+		this.r = r;
 	}
 	
 	public void setMyScanner(ScannerInterface scReceived) {
@@ -34,7 +36,7 @@ public class Game {
 			mode = sc.nextInt();
 			switch(mode) {
 			case 1: 
-				this.secretWord = new SecretWord();
+				this.secretWord = new SecretWord(r);
 				this.secretWord.generateSecretWord(this.secretWord.getWord_length(), this.secretWord.getMin_number());
 				break;
 			case 2:
@@ -44,7 +46,7 @@ public class Game {
 				length = sc.nextInt();
 				GameView.selectModeMissatge(2);
 				minValue = sc.nextInt();
-				this.secretWord = new SecretWord(length,minValue);
+				this.secretWord = new SecretWord(length,minValue,r);
 				askTries();
 				this.secretWord.generateSecretWord(length, minValue);
 				break;

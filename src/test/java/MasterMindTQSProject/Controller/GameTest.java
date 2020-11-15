@@ -6,12 +6,18 @@ import org.junit.Test;
 
 import MasterMindTQSProject.Controller.Game;
 import MasterMindTQSProject.Model.MockMyScanner;
+import MasterMindTQSProject.Model.MyRandom;
 import MasterMindTQSProject.Model.MyScanner;
+import MasterMindTQSProject.Model.RandomInterface;
 
 public class GameTest {
 	MockMyScanner sc = new MockMyScanner();
-	MyScanner nsc = new MyScanner();
-	Game game = new Game(sc);
+	//MyScanner sc = new MyScanner();
+	
+	RandomInterface r = new MyRandom();
+	//RandomInterface r = new MockRandom();
+	
+	Game game = new Game(sc,r);
 		
 	@Test
 	public void testAskNumTriesDefault() {

@@ -1,5 +1,6 @@
 package MasterMindTQSProject.Controller;
 
+import MasterMindTQSProject.Model.RandomInterface;
 import MasterMindTQSProject.Model.ScannerInterface;
 import MasterMindTQSProject.View.MasterMindView;
 
@@ -12,12 +13,14 @@ public class MasterMind {
 	public static int correct;
 	public static int aprox;
 	public static boolean endGame;
+	public static RandomInterface r;
 	
 	
-	public MasterMind(ScannerInterface sc) {
+	public MasterMind(ScannerInterface sc, RandomInterface r) {
 		this.sc = sc;
+		this.r = r;
 		
-		this.myGame = new Game(this.sc);
+		this.myGame = new Game(this.sc, r);
 		this.usedTries = 0;
 		this.correct = 0;
 		this.aprox = 0;
