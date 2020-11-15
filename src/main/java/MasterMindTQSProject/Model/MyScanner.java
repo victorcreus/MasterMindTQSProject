@@ -1,4 +1,4 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Model;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class MyScanner implements ScannerInterface{
 	
 	Scanner newValues;
 	
-	MyScanner(){
+	public MyScanner(){
 		newValues = new Scanner(System.in);
 	}
 	

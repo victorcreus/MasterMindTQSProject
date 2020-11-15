@@ -1,10 +1,12 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Model;
 
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
 import org.junit.Test;
+
+import MasterMindTQSProject.Model.SecretWord;
 
 
 public class SecretWordTest {

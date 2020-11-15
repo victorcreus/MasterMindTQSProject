@@ -1,8 +1,12 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Controller;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import MasterMindTQSProject.Controller.Game;
+import MasterMindTQSProject.Model.MockMyScanner;
+import MasterMindTQSProject.Model.MyScanner;
 
 public class GameTest {
 	MockMyScanner sc = new MockMyScanner();

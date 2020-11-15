@@ -1,4 +1,4 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class MockMyScanner implements ScannerInterface{
 	int intUsed = 0;
 	int stringUsed = 0;
 	
-	MockMyScanner(){
+	public MockMyScanner(){
 	}
 	
 	@Override

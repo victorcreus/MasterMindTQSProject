@@ -1,4 +1,6 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Controller;
+
+import MasterMindTQSProject.Model.ScannerInterface;
 
 public class MasterMind {
 	

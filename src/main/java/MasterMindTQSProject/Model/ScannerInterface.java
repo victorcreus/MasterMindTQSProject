@@ -1,4 +1,4 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Model;
 
 public interface ScannerInterface {
 	void setNewCode(String values);

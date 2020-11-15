@@ -1,5 +1,9 @@
 package MasterMindTQSProject;
 
+import MasterMindTQSProject.Controller.MasterMind;
+import MasterMindTQSProject.Model.MyScanner;
+import MasterMindTQSProject.Model.ScannerInterface;
+
 public class InitializeGame {
 
 	public static void main(String[] args) {

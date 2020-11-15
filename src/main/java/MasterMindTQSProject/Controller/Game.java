@@ -1,4 +1,7 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Controller;
+
+import MasterMindTQSProject.Model.ScannerInterface;
+import MasterMindTQSProject.Model.SecretWord;
 
 public class Game {
 

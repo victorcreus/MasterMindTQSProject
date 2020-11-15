@@ -1,8 +1,12 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Controller;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import MasterMindTQSProject.Controller.MasterMind;
+import MasterMindTQSProject.Model.MockMyScanner;
+import MasterMindTQSProject.Model.ScannerInterface;
 
 public class MasterMindTest {
 	//ScannerInterface sc = new myScanner();

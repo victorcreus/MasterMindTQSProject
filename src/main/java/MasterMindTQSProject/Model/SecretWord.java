@@ -1,4 +1,4 @@
-package MasterMindTQSProject;
+package MasterMindTQSProject.Model;
 
 import java.util.Random;
 
