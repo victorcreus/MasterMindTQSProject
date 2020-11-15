@@ -1,6 +1,7 @@
 package MasterMindTQSProject.Controller;
 
 import MasterMindTQSProject.Model.ScannerInterface;
+import MasterMindTQSProject.View.GameView;
 import MasterMindTQSProject.Model.SecretWord;
 
 public class Game {
@@ -22,18 +23,14 @@ public class Game {
 	}
 	
 	private void askTries() {
-		System.out.print("Insert the number of tries: ");
+		GameView.askTriesMissatge();
 		this.tries = this.sc.nextInt();
 	}
 	
 	public void selectMode() {
 		int mode = 0;
 		 do{
-			System.out.println("Choose an option ");
-			System.out.println("[1] Default mode");
-			System.out.println("[2] Customized mode");
-			System.out.print("Option selected: ");
-			
+			GameView.menuMode();
 			mode = sc.nextInt();
 			switch(mode) {
 			case 1: 
@@ -43,16 +40,16 @@ public class Game {
 			case 2:
 				int length;
 				int minValue;
-				System.out.print("Insert the length of the secret word: ");
+				GameView.selectModeMissatge(1);
 				length = sc.nextInt();
-				System.out.print("Insert the minimum value of the secret word: ");
+				GameView.selectModeMissatge(2);
 				minValue = sc.nextInt();
 				this.secretWord = new SecretWord(length,minValue);
 				askTries();
 				this.secretWord.generateSecretWord(length, minValue);
 				break;
 			default:
-				System.out.print("This is not a correct option");
+				GameView.selectModeMissatge(3);
 				break;
 				
 			}
@@ -74,7 +71,7 @@ public class Game {
 		
 		try{
 			while(!converted) {
-				System.out.println("Insert your answer code; example [1 2 3 4 5]");
+				GameView.askCodeMissages(1);
 				String strNumbers = this.sc.nextLine();
 				String []StrNumbersArray = strNumbers.split(" ");
 
@@ -88,16 +85,16 @@ public class Game {
 					if(this.itIsInRange()) {
 						converted = true;
 					} else {
-						System.out.println("Some values are not in range!");
+						GameView.askCodeMissages(2);
 					}
 						
 				} else {
-					System.out.println("Introduce a correct length code!");
+					GameView.askCodeMissages(3);
 				}
 			}
 		} catch (NumberFormatException ex) {
 			//System.err.println("Some values are not integers: "+ex);
-			System.out.println("Some values are not integers! Try again:");
+			GameView.askCodeMissages(4);
 			this.askCode();
 		}
 		

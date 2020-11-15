@@ -1,6 +1,7 @@
 package MasterMindTQSProject.Controller;
 
 import MasterMindTQSProject.Model.ScannerInterface;
+import MasterMindTQSProject.View.MasterMindView;
 
 public class MasterMind {
 	
@@ -34,6 +35,7 @@ public class MasterMind {
 	}
 	
 	public int askPlayAgain() {
+		MasterMindView.askPlayAgainMissatge();
 		int again = 0;
 		do {
 			again = sc.nextInt();
@@ -44,7 +46,7 @@ public class MasterMind {
 			case 2:
 				break;
 			default:
-				System.out.println("Please, enter a correct option!");
+				MasterMindView.askPlayAgainError();
 			}
 		}while(again != 1 && again != 2);
 		
@@ -52,12 +54,12 @@ public class MasterMind {
 	}
 
 	public void initGame() {
-		System.out.println(menu());
+		System.out.println(MasterMindView.menu());
 		myGame.selectMode();
 	}
 	
 	public void startGame() {
-		scoreBoard(myGame);
+		MasterMindView.scoreBoard(myGame,this);
 
 		while(!endGame && usedTries < myGame.getTries()) {
 			
@@ -67,7 +69,7 @@ public class MasterMind {
 			aprox = myGame.getAproxNumbers();
 			
 			if(correct != myGame.secretWord.getWord_length()) {
-				scoreBoard(myGame);
+				MasterMindView.scoreBoard(myGame,this);
 			} else {
 				endGame = true;
 			}
@@ -76,37 +78,11 @@ public class MasterMind {
 		endGame();
 	}
 	
-	private static String menu() {
-		String text = 
-		"----------------------------\n" +
-		"------- MASTER MIND --------\n" +
-		"--------- WELCOME ----------\n" + 
-		"----------------------------\n";
-		return text;
-	}
-	
-	private static void scoreBoard(Game myGame) {
-		System.out.println("\n");
-		System.out.println("Remaining tries: "+(myGame.getTries()-usedTries));
-		System.out.println("Correct numbers: "+correct);
-		System.out.println("Approximate numbers: "+aprox);
-		System.out.println("\n");
-	}
-	
 	private void endGame() {
 		if(endGame) {
-			System.out.println(winner(1));
+			System.out.println(MasterMindView.winner(1));
 		} else {
-			System.out.println(winner(0));
-		}
-	}
-	
-	
-	public static String winner(int value) {
-		if(value == 1) {
-			return "You win!";
-		} else {
-			return "You lose!";
+			System.out.println(MasterMindView.winner(0));
 		}
 	}
 	

@@ -7,6 +7,7 @@ import org.junit.Test;
 import MasterMindTQSProject.Controller.MasterMind;
 import MasterMindTQSProject.Model.MockMyScanner;
 import MasterMindTQSProject.Model.ScannerInterface;
+import MasterMindTQSProject.View.*;
 
 public class MasterMindTest {
 	//ScannerInterface sc = new myScanner();
@@ -108,9 +109,9 @@ public class MasterMindTest {
 	@Test
 	public void testEndGame() {
 		newGame.proxySetEndGame(true);
-		assertEquals("You win!", newGame.winner(1));
+		assertEquals("You win!", MasterMindView.winner(1));
 		newGame.proxySetEndGame(false);
-		assertEquals("You lose!", newGame.winner(0));
+		assertEquals("You lose!", MasterMindView.winner(0));
 	}
 	
 	@Test
