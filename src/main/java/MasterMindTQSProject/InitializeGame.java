@@ -13,9 +13,9 @@ public class InitializeGame {
 		//ScannerInterface sc = new MockMyScanner();
 		ScannerInterface sc = new MyScanner();
 		
-		RandomInterface r = new MockRandom();
-		r.setInt(5);
-		//RandomInterface r = new MyRandom();
+		//RandomInterface r = new MockRandom();
+		//r.setInt(5);
+		RandomInterface r = new MyRandom();
 		
 		
 		
